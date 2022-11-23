@@ -62,10 +62,10 @@ int main(int argc, char **argv){
     schedparam1.sched_priority = 0;
 
     struct sched_param schedparam2;     // priority for RR [1 - 99]
-    schedparam2.sched_priority = 40;
+    schedparam2.sched_priority = 20;
 
     struct sched_param schedparam3;     // priority for FIFO [1 - 99]
-    schedparam3.sched_priority = 40;
+    schedparam3.sched_priority = 20;
 
     struct timespec start1,finish1;
     double elapsedTime_sched_other;
