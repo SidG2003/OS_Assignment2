@@ -16,14 +16,14 @@ void* countA(void* arg){
     struct timespec start1,finish1;
     double elapsedTime_sched_other;
     clock_gettime(CLOCK_REALTIME,&start1);
-    printf("start1 time: %jd\n",start1.tv_sec);
+    // printf("start1 time: %jd\n",start1.tv_sec);
     double ans=0;
     while(ans!=p){
         ans+=1;
     }
     printf("Inside countA\n");
     clock_gettime(CLOCK_REALTIME,&finish1);
-    printf("finish1 time: %jd\n",finish1.tv_sec);
+    // printf("finish1 time: %jd\n",finish1.tv_sec);
     elapsedTime_sched_other= (finish1.tv_sec + finish1.tv_nsec*(1e-9))  - (start1.tv_sec + start1.tv_nsec*(1e-9));
     printf("Time for Thr-A(sched_other) is %lf seconds\n",elapsedTime_sched_other);
     pthread_cancel(tid1);
@@ -33,14 +33,14 @@ void* countB(void* arg){
     struct timespec start2,finish2;
     double elapsedTime_sched_rr;
     clock_gettime(CLOCK_REALTIME,&start2);
-    printf("start2 time: %jd\n",start2.tv_sec);
+    // printf("start2 time: %jd\n",start2.tv_sec);
     double ans=0;
     while(ans!=p){
         ans+=1;
     }
     printf("Inside countB\n");
     clock_gettime(CLOCK_REALTIME,&finish2);
-    printf("finish2 time: %jd\n",finish2.tv_sec);
+    // printf("finish2 time: %jd\n",finish2.tv_sec);
     elapsedTime_sched_rr = (finish2.tv_sec + finish2.tv_nsec*(1e-9))  - (start2.tv_sec + start2.tv_nsec*(1e-9));
     printf("Time for Thr-B(sched_rr) is %lf seconds\n",elapsedTime_sched_rr);
     pthread_cancel(tid2);
@@ -50,14 +50,14 @@ void* countC(void* arg){
     struct timespec start3,finish3;
     double elapsedTime_sched_fifo;
     clock_gettime(CLOCK_REALTIME,&start3);
-    printf("start3 time: %jd\n", start3.tv_sec);
+    // printf("start3 time: %jd\n", start3.tv_sec);
     double ans=0;
     while(ans!=p){
         ans+=1;
     }
     printf("Inside countC\n");
     clock_gettime(CLOCK_REALTIME,&finish3);
-    printf("finish3 time: %jd\n",finish3.tv_sec);
+    // printf("finish3 time: %jd\n",finish3.tv_sec);
     elapsedTime_sched_fifo= (finish3.tv_sec + finish3.tv_nsec*(1e-9))  - (start3.tv_sec + start3.tv_nsec*(1e-9));
     printf("Time for Thr-C(sched_fifo) is %lf seconds\n",elapsedTime_sched_fifo);
     pthread_cancel(tid3);
@@ -93,10 +93,10 @@ int main(int argc, char **argv){
     schedparam1.sched_priority = 0;
 
     struct sched_param schedparam2;     // priority for RR [1 - 99]
-    schedparam2.sched_priority = 50;
+    schedparam2.sched_priority = 60;
 
     struct sched_param schedparam3;     // priority for FIFO [1 - 99]
-    schedparam3.sched_priority = 50;
+    schedparam3.sched_priority = 40;
 
     //////////Thread1/////////////////////////////////////////////////////////////////////////////////
     // struct timespec start1,finish1;
