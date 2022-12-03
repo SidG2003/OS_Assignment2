@@ -29,7 +29,14 @@ int main(){
     }
     else if (pid1 == 0){         // child process
         printf("in child process\n");
-        execl("/bin/sh","sh", "/home/uday/uday/OS_Assignment2/script1.sh", (char*)NULL);
+        struct sched_param param1;
+        param1.sched_priority=0;
+        sched_setscheduler(pid1, SCHED_OTHER, &param1);
+        //execl("/bin/sh","sh","-c", "script1.sh", (char*)NULL);
+        execl("/bin/sh","sh", "/home/sid/SiddharthGupta2021355_OS2/OS_Assignment2/script1.sh", (char*)NULL);
+        //execl("/bin/sh","sh", "/home/sid/SiddharthGupta2021355_OS2/OS_Assignment2/script1.sh", (char*)NULL);
+        
+        //execl("/bin/sh","sh", "/home/uday/uday/OS_Assignment2/script1.sh", (char*)NULL);
         // execvp(args[0], args); 
         exit(EXIT_FAILURE);	   
     }
@@ -58,12 +65,16 @@ int main(){
     }
     else if (pid2 == 0){         // child process
         printf("in child process\n");
-        execl("/bin/sh","sh", "/home/uday/uday/OS_Assignment2/script2.sh", (char*)NULL);
+        execl("/bin/sh","sh", "/home/sid/SiddharthGupta2021355_OS2/OS_Assignment2/script2.sh", (char*)NULL);
+        //execl("/bin/sh","sh", "/home/uday/uday/OS_Assignment2/script2.sh", (char*)NULL);
         // execvp(args[0], args); 
         exit(EXIT_FAILURE);	   
     }
     else{                       // parent process
         printf("in parent process\n");
+        struct sched_param param2;
+        param2.sched_priority=3;
+        sched_setscheduler(pid2, SCHED_RR, &param2);
         waitpid(pid2, &status2, WUNTRACED);
         assert(WIFEXITED(status2)); 
         clock_gettime(CLOCK_MONOTONIC,&finish2);
@@ -87,7 +98,11 @@ int main(){
     }
     else if (pid3 == 0){         // child process
         printf("in child process\n");
-        execl("/bin/sh","sh", "/home/uday/uday/OS_Assignment2/script3.sh", (char*)NULL);
+        struct sched_param param3;
+        param3.sched_priority=3;
+        sched_setscheduler(pid3, SCHED_FIFO, &param3);
+        execl("/bin/sh","sh", "/home/sid/SiddharthGupta2021355_OS2/OS_Assignment2/script3.sh", (char*)NULL);
+        //execl("/bin/sh","sh", "/home/uday/uday/OS_Assignment2/script3.sh", (char*)NULL);
         // execvp(args[0], args); 
         exit(EXIT_FAILURE);	   
     }

@@ -1,5 +1,5 @@
 all: 
-	gcc part11parallel.c -o part11parallel -lpthread
+	gcc process_scheduling.c -o process_scheduling
 	
 run:
-	./part11parallel
+	./process_scheduling
