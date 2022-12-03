@@ -1,13 +1,9 @@
 #!/bin/bash
-cd /home/user1/kernelbuild/linux-5.19.8/os-repo
-cp .config /home/user1/kernelbuild/linux-5.19.8
-cd ..
-make menuconfig
+rm -r linux-5.19.8
+echo "deleted"
+tar xvf linux-5.19.8.tar.xz
+echo "untarred"
+cp /home/user1/Ass2config /home/user1/Ass2/linux-5.19.8/.config
+cd linux-5.19.8
+echo "copied config and entered linux-5.19.8"
 make -j2
-make modules_install
-cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-linux3
-mkinitcpio -k 5.19.8 -g /boot/initramfs-linux3.img
-cp System.map /boot/System.map-linux3
-cp /boot/System.map-linux3 System.map
-grub-mkconfig -o /boot/grub/grub.cfg
-update-grub
